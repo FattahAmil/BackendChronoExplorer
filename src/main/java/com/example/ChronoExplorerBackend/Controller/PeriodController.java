@@ -1,9 +1,9 @@
 package com.example.ChronoExplorerBackend.Controller;
+import com.example.ChronoExplorerBackend.Entity.Period;
 import com.example.ChronoExplorerBackend.Service.PeriodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Period;
 import java.util.List;
 
 @RestController
