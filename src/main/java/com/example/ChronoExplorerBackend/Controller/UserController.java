@@ -29,17 +29,16 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
-        User foundUser = userService.getUserByUsername(user.getUsername());
+        User foundUser = userService.getUserByUsername(user.getEmail());
 
         if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
-            String token = jwtService.generateToken(user.getUsername());
+            String token = jwtService.generateToken(user.getEmail());
             return ResponseEntity.ok(Map.of(
                     "status", 200,
                     "message", "Login successful",
                     "token", token
             ));
         }
-
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
                 "status", 401,
                 "message", "Invalid credentials"

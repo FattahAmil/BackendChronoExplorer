@@ -18,7 +18,7 @@ public class UserService {
 
     // Méthode pour récupérer un utilisateur par son nom d'utilisateur
     public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByEmail(username);
     }
 
     // Méthode pour créer un utilisateur
@@ -33,8 +33,8 @@ public class UserService {
                     .orElseThrow(() -> new RuntimeException("Role not found with id: " + user.getRole().getId()));
             user.setRole(existingRole);
         }
-        if (userRepository.findByUsername(user.getUsername()) != null) {
-            throw new RuntimeException("Username already exists");
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            throw new RuntimeException("Email already exists");
         }
         return userRepository.save(user);
     }
